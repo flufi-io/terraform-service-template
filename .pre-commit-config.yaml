@@ -84,8 +84,3 @@ repos:
       - id: no-commit-to-branch
       - id: forbid-submodules
       - id: check-vcs-permalinks
-
-  -   repo: https://github.com/flufi-io/pre-commit-hooks
-      rev: 0.0.11  # or specific git tag
-      hooks:
-        - id: sops-encrypt
