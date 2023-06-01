@@ -86,6 +86,10 @@ repos:
       - id: check-vcs-permalinks
 
   -   repo: https://github.com/flufi-io/pre-commit-hooks
-      rev: 0.0.1  # or specific git tag
+      rev: 0.0.11  # or specific git tag
       hooks:
         - id: sops-encrypt
+          name: Encrypt tfvars files
+          entry: hooks/sops-encrypt.sh
+          language: script
+          files: \.tfvars$
