@@ -1,4 +1,48 @@
 # terraform-service-template
+
+## Terraform Encryption with SOPS
+This repository includes scripts for encrypting and decrypting Terraform .tfvars files using Mozilla SOPS. SOPS uses AWS KMS for encryption and decryption, and as such, appropriate AWS credentials must be provided.
+
+### Requirements
+* SOPS
+* AWS credentials with access to the appropriate KMS key
+* Setting up AWS Credentials
+* To use AWS KMS with SOPS, you need to configure your AWS credentials. These can be set in the following ways:
+
+  * Environment Variables: You can set the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN (if required) environment variables.
+    ```bash
+    export AWS_ACCESS_KEY_ID=<your-access-key-id>
+    export AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
+    export AWS_SESSION_TOKEN=<your-session-token> # if required
+    ```
+  * AWS CLI: If you have the AWS CLI installed and configured, SOPS can use those credentials. You can configure the AWS CLI using the command aws configure.
+
+  * EC2 Instance Profiles: If you are running this on an EC2 instance, you can assign an instance profile to the instance with the necessary permissions.
+
+### Encrypting tfvars Files
+The sops-encrypt.sh script can be used to encrypt all .tfvars files in the repository. The script will create an encrypted .tfvars.enc file for each .tfvars file it finds.
+
+To run the script:
+
+```bash
+./sops-encrypt.sh
+```
+Remember to add this script as a pre-commit hook in your git repository to ensure all .tfvars files are encrypted before they are committed.
+
+### Decrypting tfvars Files
+The sops-decrypt.sh script can be used to decrypt all .tfvars.enc files in the repository. The script will create a decrypted .tfvars file for each .tfvars.enc file it finds.
+
+To run the script:
+
+```bash
+./sops-decrypt.sh
+```
+**Remember to decrypt the .tfvars.enc files when you need to use them with Terraform.**
+
+### Caution
+Please note that these scripts will overwrite existing .tfvars or .tfvars.enc files without warning. Ensure this is the behavior you want before using these scripts.
+
+
 <!-- BEGIN_TF_DOCS -->
 # Resources
 
@@ -30,6 +74,7 @@
 <!-- END_TF_DOCS -->
 
 
+## License
 MIT License
 
 Copyright (c) [2023] Flufi LLC
