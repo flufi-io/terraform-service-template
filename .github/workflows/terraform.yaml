@@ -1,0 +1,16 @@
+name: terraform
+on:
+  issue_comment:
+
+permissions: write-all
+
+jobs:
+  terraform:
+    if: >-
+      (github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      github.actor != 'github-actions[bot]')
+    uses: flufi-io/workflows/.github/workflows/terraform.yaml@main
+    with:
+      comment_body: ${{ github.event.comment.body }}
+    secrets: inherit
