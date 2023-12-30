@@ -1,5 +1,16 @@
 creation_rules:
-  - kms: arn:aws:kms:us-east-1:732758452413:key/bcc8401b-38ff-44d7-8355-8f9869d6ba61
+  # Development environment
+  - path_regex: \.development\.yaml$
+    kms: arn:aws:kms:us-east-1:732758452413:key/bcc8401b-38ff-44d7-8355-8f9869d6ba61
+
+  # Staging environment
+  - path_regex: \.staging\.yaml$
+    kms: arn:aws:kms:us-east-1:732758452413:key/bcc8401b-38ff-44d7-8355-8f9869d6ba61
+
+  # Production environment
+  - path_regex: \.production\.yaml$
+    kms: arn:aws:kms:us-east-1:732758452413:key/bcc8401b-38ff-44d7-8355-8f9869d6ba61
+
 
 sops:
   kms:
