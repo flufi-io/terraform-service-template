@@ -1,1 +1,1 @@
-*.yaml diff=sopsdiffer
+*.json diff=sopsdiffer
