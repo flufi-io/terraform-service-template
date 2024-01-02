@@ -1,7 +1,8 @@
 ---
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.83.4  # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    rev: v1.86.0  # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+
     hooks:
       - id: terraform_fmt
         name: Terraform fmt
@@ -69,9 +70,9 @@ repos:
         language: script
         files: (\.tf|\.terraform\.lock\.hcl)$
         exclude: \.terraform\/.*$
-
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.32.0
+    rev: v1.33.0
+
     hooks:
       - id: yamllint
         args:

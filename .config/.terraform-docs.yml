@@ -6,8 +6,12 @@ footer-from: ""
 recursive:
   enabled: false
 sections:
-  hide: [ ]
-  show: [ ]
+  show:
+    - header
+    - inputs
+    - providers
+    - modules
+    - outputs
 content: |-
   # Resources
   {{ range .Module.Resources }}
