@@ -1,14 +1,10 @@
-# Ignore everything under any .terraform directories.
-**/.terraform*/*
-
-# Ignore the IDE (Goland) configuration files.
 .idea
-
-# Ignore Terraform state files to avoid uploading sensitive information.
-*.tfstate
-*.tfstate.*
-
-# Ignore the lock file generated when using Terraform 0.14 and later.
+.vscode
+**/*.tfstate*
+*.tfstate*
+**/.terraform
+.terraform
+**/.terraform.lock.hcl
 .terraform.lock.hcl
 
 # Ignore crash log files, which are generated when Terraform crashes.
@@ -44,4 +40,15 @@ test-report.xml
 
 # Ignore files from the JetBrains IDE
 *.iml
+
+
 *.tfvars.json
+!**/.terraform-docs.yml
+!.terraform-docs.yml
+**/go.*
+go.*
+.env
+**/terraform.tfvars
+terraform.tfvars
+**.external_modules/
+**.sh
