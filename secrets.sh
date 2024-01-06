@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define environments
-environments=("development" "staging" "production")
+environments=("sandbox" "development" "staging" "production")
 
 # Check for arguments
 if [ "$#" -eq 1 ]; then
@@ -11,7 +11,7 @@ elif [ "$#" -eq 2 ]; then
     operation=$1
     selected_environments=("$2")
 else
-    echo "Usage: $0 [-e|-d] [optional: development|staging|production]"
+    echo "Usage: $0 [-e|-d] [optional: sandbox|development|staging|production]"
     exit 1
 fi
 # Function to perform sops operation
@@ -33,6 +33,7 @@ if [ "$operation" == "-e" ]; then
         echo "Original file deleted."
     else
         echo "Encryption failed."
+        rm -f "$encrypted_file"
         exit 1
     fi
 elif [ "$operation" == "-d" ]; then
@@ -46,6 +47,7 @@ elif [ "$operation" == "-d" ]; then
         echo "Encrypted file deleted."
     else
         echo "Decryption failed."
+        rm -f "$decrypted_file"
         exit 1
     fi
 else
