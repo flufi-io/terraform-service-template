@@ -1,5 +1,6 @@
-formatter: markdown table  # this is required
-
+---
+# terraform-docs configuration
+formatter: markdown table
 version: ""
 header-from: main.tf
 footer-from: ""
@@ -12,27 +13,37 @@ sections:
     - providers
     - modules
     - outputs
+
 content: |-
-  # Resources
-  {{ range .Module.Resources }}
-  - {{ .GetMode }}.{{ .Spec }} ({{ .Position.Filename }}#{{ .Position.Line }})
-  {{- end }}
+  # Configuration example
+  ```hcl
+  # main.tf
+  {{ include "main.tf" }}
+  ```
+  ```hcl
+  # terraform.tfvars
+  {{ include "terraform.tfvars" }}
+  ```
+    ```hcl
+  # variables.tf
+  {{ include "variables.tf" }}
+  ```
   {{ .Header }}
   {{ .Providers }}
   {{ .Inputs }}
   {{ .Outputs }}
+  ## Resources
+  {{ range .Module.Resources }}
+  - {{ .GetMode }}.{{ .Spec }} ({{ .Position.Filename }}#{{ .Position.Line }})
+  {{- end }}
 
 output:
-  file: "README.md"
+  file: README.md
   mode: inject
   template: |-
     <!-- BEGIN_TF_DOCS -->
     {{ .Content }}
     <!-- END_TF_DOCS -->
-
-output-values:
-  enabled: false
-  from: ""
 
 sort:
   enabled: true
@@ -42,7 +53,7 @@ settings:
   anchor: true
   color: true
   default: true
-  description: true
+  description: false
   escape: true
   hide-empty: true
   html: true
